@@ -10,7 +10,7 @@
 </p>
 
 > **"Unleashing the deep ocean's throughput with prehistoric strength."**  
-> ศูนย์รวมสถาปัตยกรรมซอฟต์แวร์ระดับองค์กร ตั้งแต่ระบบวางแผนทรัพยากร (ERP) ไปจนถึง Middleware ขับเคลื่อนข้อมูลแบบ Real-time
+> Powering next-gen enterprise architecture, from scalable core ERP suites to event-driven, real-time data middleware.
 
 ---
 
