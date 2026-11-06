@@ -24,8 +24,8 @@
 ## 🌌 สถาปัตยกรรมระดับองค์กร (Enterprise Architecture Overview)
 
 ```mermaid
-graph TB
-    subgraph UX["🎨 Modern User Experience Layer (SAP Fiori / UI5 Monorepos)"]
+flowchart TD
+    subgraph UX["🎨 Modern User Experience Layer - SAP Fiori UI5"]
         UI_INT["🔗 Fiori Integration (16 Apps)"]
         UI_UTL["⚙️ Fiori Utilities (15 Apps)"]
         UI_HND["📱 Fiori Handheld Mobile (8 Apps)"]
@@ -33,27 +33,32 @@ graph TB
         UI_PMT["💳 Fiori Payment File Manager"]
     end
 
-    subgraph CORE["⚡ Clean Core ABAP Cloud Backend (RAP EML / OData V4)"]
-        BO_INT["Whale Interface Framework<br/>(Staging API & Job Engine)"]
-        BO_UTL["Whale Common Utilities<br/>(VarConf, Running No, Archive)"]
-        BO_HND["Whale Handheld Solution<br/>(15 Industrial Barcode Modules)"]
-        BO_THL["Thai Tax & Accounting Engine<br/>(WHT, Vouchers, Statements)"]
-        BO_PMT["Bank Payment Engine<br/>(DMEE / PMW Bank BAdIs)"]
+    subgraph CORE["⚡ Clean Core ABAP Cloud Backend - RAP and OData V4"]
+        BO_INT["Whale Interface Framework<br/>Staging API and Job Engine"]
+        BO_UTL["Whale Common Utilities<br/>VarConf and Running Number"]
+        BO_HND["Whale Handheld Solution<br/>15 Industrial RF Modules"]
+        BO_THL["Thai Tax and Accounting Engine<br/>WHT and Vouchers"]
+        BO_PMT["Bank Payment Engine<br/>DMEE and PMW BAdIs"]
     end
 
-    subgraph DOCS["📑 Master Document & Output Management"]
-        XDP["56 Adobe LiveCycle Form Suites (.XDP)<br/>FI, MM, PM, PP, QM, SD + 9 Major Bank Cheques"]
+    subgraph DOCS["📑 Master Document and Output Management"]
+        XDP["56 Adobe LiveCycle Form Suites .XDP<br/>FI, MM, PM, PP, QM, SD and 9 Bank Cheques"]
     end
 
-    subgraph DEPLOY["🚢 DevOps & Lifecycle Automation"]
-        GCTS["SAP gCTS JSON Serialization (Format 6)<br/>Spaces, Pages, Catalogs, BSP & Semantic Roles"]
-        AGIT["abapGit Serialization (Language Version 5)<br/>Clean Core CDS Views, Tables & Classes"]
+    subgraph DEPLOY["🚢 DevOps and Lifecycle Automation"]
+        GCTS["SAP gCTS Format 6<br/>Spaces, Catalogs and BSP"]
+        AGIT["abapGit ABAP Cloud V5<br/>CDS Views, Tables and Classes"]
     end
 
-    UX <==>|OData V4 (JSON / Batch)| CORE
-    CORE --> DOCS
-    DEPLOY -.->|Continuous Deployment| CORE
-    DEPLOY -.->|Launchpad Activation| UX
+    UI_INT <-->|"OData V4"| BO_INT
+    UI_UTL <-->|"OData V4"| BO_UTL
+    UI_HND <-->|"OData V4"| BO_HND
+    UI_THL <-->|"OData V4"| BO_THL
+    UI_PMT <-->|"OData V4"| BO_PMT
+
+    BO_THL -->|"Form Data Providers"| XDP
+    AGIT -.->|"Clean Core Deployment"| BO_INT
+    GCTS -.->|"Launchpad Activation"| UI_INT
 ```
 
 ---
